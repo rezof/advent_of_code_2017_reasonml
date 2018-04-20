@@ -5,27 +5,27 @@ let puzzle = "823175367468399787817925919556533257949337848326497818414334128437
 
 let puzzle_length = String.length(puzzle);
 
-let compareIndex = (puzzle, index) => {
+let nextIndex = (puzzle, index) => {
   switch(String.length(puzzle) > index + 1){
   | true => index + 1
   | false => 0
   }
 };
 
-let rec puzzleChecker = (puzzle:string, i1:int, i2:int, stop:bool) => {
+let rec resolver = (puzzle:string, i1:int, i2:int, stop:bool) => {
   stop ? 0 : switch (puzzle.[i1] === puzzle.[i2]) {
-    | true => int_of_string(String.make(1, puzzle.[i1])) + puzzleChecker(puzzle, compareIndex(puzzle, i1), compareIndex(puzzle, i2), i2===0)
-    | false => puzzleChecker(puzzle, compareIndex(puzzle, i1), compareIndex(puzzle, i2), i2===0)
+    | true => int_of_string(String.make(1, puzzle.[i1])) + resolver(puzzle, nextIndex(puzzle, i1), nextIndex(puzzle, i2), i2===0)
+    | false => resolver(puzzle, nextIndex(puzzle, i1), nextIndex(puzzle, i2), i2===0)
   };
 };
 
 
 /* 
-puzzleChecker(test1, 0, 1, false);
-puzzleChecker(test2, 0, 1, false);
-puzzleChecker(test3, 0, 1, false);
+resolver(test1, 0, 1, false);
+resolver(test2, 0, 1, false);
+resolver(test3, 0, 1, false);
 */
 
-let total = puzzleChecker(puzzle, 0, 1, false);
+let total = resolver(puzzle, 0, 1, false);
 
 Js.log(total);

@@ -3,7 +3,7 @@
 {
   "name": "advent-code",
   "version": "0.1.0",
-  "sources": [{ "dir": "src", "subdirs": ["puzzle1"] }],
+  "sources": [{ "dir": "src", "subdirs": ["day1"] }],
   "package-specs": {
     "module": "commonjs",
     "in-source": true
